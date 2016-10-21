@@ -18,6 +18,7 @@ File.open('monthly logs/' + 'September 1995.txt', 'w+')
 File.open('monthly logs/' + 'October 1995.txt', 'w+')
 
 log = File.open('log')
+
 date_array = []
 for line in log
   raw_date = line.scan(/\d{1,2}\/\S\S\S\/\d{4}/)
@@ -39,4 +40,13 @@ end
 
 for date_key,date_value in date_hash
   puts "On (#{date_key}) there were #{date_value} requests"
+end
+
+for line in log
+  raw_error = line.scan(/([3-5]0[0-9])/)
+  error_array.push(raw_error)
+end
+
+for error_key,error_value in date_hash
+  puts "On (#{error_key}) there were #{error_value} errors"
 end
