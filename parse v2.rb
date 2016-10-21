@@ -33,6 +33,7 @@ for date_line in date_array
 end
 
 date_hash = Hash.new(0)
+error_hash = Hash.new(0)
 
 for date_str in date_str_array
   date_hash.store(date_str, date_hash[date_str]+1)
@@ -42,11 +43,14 @@ for date_key,date_value in date_hash
   puts "On (#{date_key}) there were #{date_value} requests"
 end
 
-for line in log
-  raw_error = line.scan(/([3-5]0[0-9])/)
+error_array = []
+ 
+for error_line in log
+  raw_error = error_line.scan(/([3-5]0[0-9])/)
   error_array.push(raw_error)
 end
+puts "#{error_array}"
 
-for error_key,error_value in date_hash
+for error_key,error_value in error_hash
   puts "On (#{error_key}) there were #{error_value} errors"
 end
